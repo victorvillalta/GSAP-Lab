@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(44, 97, 145);
+    width: 100vw;
+    height: 100vh;
+
+}
+
+.principal__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    height: 500px;
+    background-color: rgb(99, 132, 158);
+    border-radius: 4rem;
+}
+
+/* Color OKLCH - no olvides este color que tambien se usa en web y ganara peso con el tiempo */
+
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 100px;
+    border-radius: 10px;
+    border: 1px lightskyblue;
+    background-color: lightblue;
+    padding: 0.5rem;
+    margin: 1rem;
+    box-shadow: 4px 10px 6px 2px rgb(186, 230, 173,  0.3);
+}
+
+.box2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 100px;
+    border-radius: 10px;
+    border: 1px rgb(107, 216, 134);
+    background-color: rgb(186, 230, 173);
+    padding: 0.5rem;
+    margin: 1rem;
+    box-shadow: -4px 10px 6px 2px rgba(173, 200, 230, 0.3);
+}

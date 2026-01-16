@@ -5,8 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+
+
+
 </head>
 <body>
     
+<section class="principal__container">
+
+<div class="box">
+    
+</div>
+
+<div class="box">
+    
+</div>
+
+<div class="box">
+   
+</div>
+
+<div class="box">
+    
+</div>
+
+<div class="box2">
+    
+</div>
+
+</section>
+
+
+
 </body>
-</html>~
+</html>
+
+    <script>
+        //GSAP (esta aqui porque si no no se carga)
+        //animacion ->tween (nombre oficial de una animacion en GSAP)
+        //document.querySelectorAll (Array)
+        
+        //Ejemplo 1
+
+        // gsap.to('.box:first-child', {
+        //     x: 160,
+        //     duration: 1
+        // })
+
+        // gsap.to('.box:nth-child(2)', {
+        //     x: 160,
+        //     duration: 2
+        // })
+
+        
+        /* Digamos que aqui todo el movimiento de vagon escalonado lo hemos 
+         Desarrollado a manita en JS , no es GSAP al uso puro y duro, 
+         ellos intenta que sean mas facil asi que nos permiten mover 1 por 1 y editarle las propiedades*/
+
+        // const boxes = document.querySelectorAll('.box')
+
+        // boxes.forEach((box, i) => {
+        //     gsap.to(box, {
+        //         x: 160,
+        //         duration: 1,
+        //         delay: i * 0.8
+        //     })
+        // })
+
+        // staggered -> escalonadas
+
+        gsap.to('.box', {
+            x: 160,
+            duration: 1,
+            scale: .2,
+            rotate: 360,
+            /*esta es la propiedad del escalonado (royo gap pero en delay en vez de en separacion)
+            tambien podemos usarlo como un objeto he introducir ciertas propiedades dentro del stagger y
+            veremos que funcionara de forma disitnta que cuando estan en linea, ni mejor ni peor diferente.*/
+            stagger: {
+                yoyo: true,
+                each: 0.2,
+                repeat: -1
+            }
+
+        })
+
+          gsap.to('.box2', {
+            x: -60,
+            duration: 1.4, 
+            scale: 1.2,
+            rotate: 360,   
+            stagger: 0.2, // esta seria en linea.
+            yoyo: true,
+            each: 0.2,
+            repeat: -1
+            
+
+        })
+
+
+
+    </script>
