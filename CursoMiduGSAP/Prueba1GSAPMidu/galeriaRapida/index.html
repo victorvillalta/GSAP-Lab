@@ -3,10 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Arcane Galery</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- CDN installer but you can also install to be NPM or YARN-->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+
+
 </head>
 <body>
-    
-    
+<section class="header">
+    <div class="title">
+        <img src="img/assets/Arcane_Title_Text.png" alt="Arcane title">
+    </div>
+</section>
+
+
+<section class="gallery__category">
+
+    <div class="grid__gallery-characters">
+        <img src="img/jinxGal_01.jpg" alt="Jinx">
+        <img src="img/isha-gal-02.jpg" alt="Isha">
+        <img src="img/VII-NormalVersion-Gal01.jpg" alt="VI">
+        <img src="img/VanderWarwick-gal-00.jpg" alt="Vander">
+        <img src="img/Warwick-gal-01.jpg" alt="Warwich">
+        <img src="img/Singed-gal-01.jpg" alt="Singed">
+        <img src="img/Ekko-Gal-01.jpg" alt="Ekko">   
+        <img src="img/Caithling-01.jpg" alt="Caitlyn Kiramman">
+        <img src="img/maddie-gal-01.jpg" alt="Maddie">
+        <img src="img/steb-gal-01.jpg" alt="Steb">
+        <img src="img/Loris-gal-01.jpg" alt="Loris">
+        <img src="img/cassandraKiramman-gal-01.jpg" alt="Cassandra Kiramman">
+        <img src="img/mel-04.jpg" alt="Mel">
+        <img src="img/Ambessa-04.jpg" alt="Ambessa Medarda">
+        <img src="img/rictus-gal-01.jpg" alt="Rictus">
+        <img src="img/Silco-gal-01.jpg" alt="Silco">
+        <img src="img/sevika_01.jpg" alt="Sevika">
+        <img src="img/JayceTalis-gal-04.jpg" alt="Jayce">
+        <img src="img/heimerdinger-gal-01.jpg" alt="Heimerdinger">
+        <img src="img/viktor-gal-01.jpg" alt="Viktor">
+        <img src="img/huck-gal-01.jpg" alt="Huck">
+        <img src="img/salo-gal-01.jpg" alt="Salo">
+        <img src="img/shoola-gal-02.jpg" alt="Shoola">
+        <img src="img/smeech-gal-01.jpg" alt="Smeech">
+        <img src="img/thomasHoskel-gal-01.jpg" alt="Thomas Hoskel">
+        <img src="img/finn-gal-01.jpg" alt="Finn">
+        <img src="img/lebanc-gal-03.webp" alt="Leblanc">
+        <img src="img/mylo-gal-01.jpg" alt="Mylo">
+        <img src="img/grayson-gal-01.jpg" alt="Grayson">
+        
+        
+        
+
+
+
+
+
+
+
+
+    </div>
+
+</section>
+
+
+    <script>
+
+        gsap.to('.grid__gallery-characters img', {
+            duration: 2,
+            scale: .97,
+            opacity: 0,
+            stagger: {
+                each:0.2,
+                repeat: -1,
+                yoyo: true,
+                grid: 'auto',
+                from: 'end' // have more types , 'center', 'edges', 
+            }
+        })
+
+
+    </script>
+
 </body>
 </html>

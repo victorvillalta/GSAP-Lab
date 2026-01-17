@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+	padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 1200px;
+    height: 1200px;
+    background-color: rgb(15, 15, 15);
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid__gallery-characters{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    
+
+    img{
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        width: 100%;
+    
+    }
+
+
+}
+

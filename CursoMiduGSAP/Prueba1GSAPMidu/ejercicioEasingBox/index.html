@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EjercicioEasingBox</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- CDN installer but you can also install to be NPM or YARN-->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+
+
+
+</head>
+
+<body>
+    <div class="box peru"></div>
+    <div class="box gray"></div>
+    <div class="box pink"></div>
+</body>
+
+<!-- remember its one tip for the activitie , not is good practice to level programatic but... is fast to be activitie. Investige other forms... and learnd 1 lesson if not good practice.  -->
+<footer> 
+    <button id="play">Play</button>
+    <button id="pause">Pause</button>
+    <button id="resume">Resume</button>
+    <button id="reverse">Reverse</button>
+    <button id="restart">Restart</button>
+    <button id="turbo">SpeedX2</button>
+</footer>
+
+<div class="log_Checked">
+<small id="log"></small>
+</div>
+
+    <script>
+
+//easing -> The curve of animation (very important to animation)
+
+        // gsap.to('.peru', { //con una coma puedes unirle mas parametros es decir diferentes objetos a la vez. 
+        //     x: 550,
+        //     duration: 1,
+        //     opacity: 1,
+        //     scale: .75,
+        //     repeat: -1,
+        //     yoyo: true,
+        //     ease: "back.in"
+            
+        // })
+
+        // gsap.to('.gray', {
+        //     x: 550,
+        //     duration: 1,
+        //     delay: 2,
+        //     opacity: 1,
+        //     scale: .75,
+        //     repeat: -1,
+        //     yoyo: true,
+        //     ease: "circ.out"
+            
+        // })
+
+        //  gsap.to('.pink', {
+        //     y: 200,
+        //     duration: 2,
+        //     opacity: 1,
+        //     scale: .75,
+        //     repeat: -1,
+        //     yoyo: true,
+        //     ease: "sine.out"
+            
+        // })
+
+        // bounce.out , back.in, back.out, expo.out, steps(24) you can found all information before "ease visualizer" in GSAP web. 
+
+        //timeline 1--2--3 play to arrive to the flag and start to next stop
+
+        // const tl = gsap.timeline()
+
+        // tl
+        // .to('.peru', {
+        //     duration: 2,
+        //     x: 200
+        // })
+
+        // .to('.gray', {
+        //     duration: 3,
+        //     y: 178
+        // }, "<")
+
+        // .to('.pink', {
+        //     duration: .4,
+        //     x: 200
+        // }, "-=3")
+
+   const tl = gsap.timeline({
+    defaults: {
+      duration: 1,
+    },
+    onComplete: () => {
+        window.log.innerHTML += "The animation finish <br>"
+    },
+
+    onStart: () => {
+        window.log.innerHTML += "The Animation start <br>"
+    },
+
+      onRepeat: () => {
+        window.log.innerHTML += "You like repeat? excelent <br>"
+    }
+  })
+ 
+    tl.to('.peru', { x: 100 })
+        .to('.gray', { x: 200 })
+        .to('.pink', { y: -100 })
+ 
+
+    window.play.onclick = () => {
+        tl.play()
+        window.log.innerHTML +=  "play <br>"
+    }
+
+    window.pause.onclick = () => {
+        tl.pause()
+        window.log.innerHTML +=  "pause <br>"
+    }
+
+    window.resume.onclick = () => {
+        tl.resume()
+        window.log.innerHTML +=  "resume <br>"
+    }
+
+    window.restart.onclick = () => {
+        tl.restart()
+        window.log.innerHTML +=  "restart <br>"
+    }
+    
+    window.reverse.onclick = () => {
+        tl.reverse()
+        window.log.innerHTML +=  "reverse <br>"
+    }
+
+     window.turbo.onclick = () => {
+        tl.timeScale(2)
+        window.log.innerHTML +=  "turbo <br>"
+    }
+
+    const logElement = document.getElementById('log');
+
+    function limpiarLog() {
+    if (logElement) { // verify the element stay and exist
+        logElement.innerHTML = ''; // clean the content
+        console.log('Contenido del log limpiado.');
+    }
+}
+
+    const intervaloLimpieza = setInterval(limpiarLog, 4000); // Interval for clean
+      
+
+/* the cleaner for log not is the better than life but... function to the activitie. But 
+investigation the other methods for this and learn for take the control of loggers if push
+any button and times of animation. */
+            
+
+
+
+    </script>
+
+</html>
