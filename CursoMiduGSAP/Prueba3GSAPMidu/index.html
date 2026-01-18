@@ -1,11 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ScrollTrigger and Animation Text</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/SplitText.min.js"></script>
+
+<!-- <script>
+ // need a register plugin always
+ document.addEventListener("DOMContentLoaded", (event) => {
+  gsap.registerPlugin(SplitText)
+  gsap.registerPlugin(ScrollTrigger)
+  
+    const splitText = new SplitText(".title", {
+        type: "words" // words, chars, lines you take all or 2 or 1 but... normaly take 1 anything.
+        
+    })
+
+    gsap.to(splitText.words, {
+        scale: 2,
+        autoAlpha: 0, // similar to opacity but your functionality is diferent in behavior with DOM look , in sometimes is interesant to hide item.
+        
+        scrollTrigger: {
+            start: 500, // It will determine when the animation will happen and at what height in the scroll. Have other options for this, how "center center", and you can put the finish to animation with the properties [end:] 
+            scrub: 0.3 // take the progress of animation to scroll
+            
+        }
+    })
+
+  const canvas = document.getElementById("hero");
+  const ctx = canvas.getContext("2d"); // Corregido a '2d' en minúscula
+
+  canvas.width = 1366
+  canvas.height = 768
+
+  const TOTAL_FRAMES = 21;
+  
+}); 
+
+</script>-->
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+    gsap.registerPlugin(SplitText, ScrollTrigger);
+
+    const canvas = document.getElementById("hero");
+    const ctx = canvas.getContext("2d");
+
+    // dimensions
+    canvas.width = 1366;
+    canvas.height = 768;
+
+    const TOTAL_FRAMES = 21;
+    const createURL = (frame) => `./img/scrolling/${frame}.png`;
+
+    // Pre-charge of img
+    const images = [];
+    let loadedCount = 0;
+
+    for (let i = 1; i <= TOTAL_FRAMES; i++) {
+        const img = new Image();
+        img.src = createURL(i);
+        img.onload = () => {
+            loadedCount++;
+            if (loadedCount === 1) {
+                // Dibujar la primera imagen en cuanto cargue
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            }
+        };
+        images.push(img);
+    }
+
+    const momo = { frame: 1 };
+
+    //Main Animation (photos & PIN) 
+    gsap.to(momo, {
+        frame: TOTAL_FRAMES,
+        snap: "frame",
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".main__section",
+            start: "top top",
+            end: "+=4000", // La duración del scroll
+            scrub: 0.5,
+            pin: true,    // ESTO mantiene el título y el canvas quietos
+            // markers: true // in the process its very useful 
+        },
+        onUpdate: () => {
+            const imgIndex = Math.round(momo.frame) - 1;
+            const img = images[imgIndex];
+            if (img) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            }
+        }
+    });
+
+    //Animation of text (syncronization) 
+    const splitText = new SplitText(".title", { type: "words" });
+
+    gsap.to(splitText.words, {
+        scale: 2,
+        autoAlpha: 0,
+        scrollTrigger: {
+            trigger: ".main__section", // Usamos el mismo trigger
+            start: "top top",          // Empieza a la vez
+            end: "+=3000",              // Pero termina rápido (a los 800px)
+            scrub: 0.3
+        }
+    });
+});
+</script>
+
+
 </head>
 <body>
+
+    
+    <section class="main__section">
+        <div class="title">DANDADAN</div>
+        <canvas id="hero"></canvas>
+    </section>
     
 </body>
 </html>

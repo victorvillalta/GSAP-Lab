@@ -7,9 +7,40 @@
 
     <link rel="stylesheet" href="style.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/SplitText.min.js"></script>
+
+<script>
+ // need a register plugin always
+ document.addEventListener("DOMContentLoaded", (event) => {
+  gsap.registerPlugin(SplitText)
+  
+    const splitText = new SplitText(".title", {
+        type: "words" // words, chars, lines you take all or 2 or 1 but... normaly take 1 anything.
+        
+    })
+
+    gsap.from(splitText.words, {
+        duration: 1,
+        y: 15,
+        autoAlpha: 0, // similar to opacity but your functionality is diferent in behavior with DOM look , in sometimes is interesant to hide item.
+        stagger: 0.2, // secs between word to word , animation to animation. Remember to stagger animation and the functions.
+        filter: "blur(10px)",
+        yoyo: true,
+        repeat: -1,
+        delay: 3
+    })
+ });
+
+</script>
+
 </head>
 <body>
-    
+   
+<div class="title">
+<h1>"Lento es suave, suave es rapido", esto es una frase que debes guardar a fuego en tu mente si eres muy exigente contigo mismo</h1>
+</div>    
+
 <section class="principal__container">
 
 

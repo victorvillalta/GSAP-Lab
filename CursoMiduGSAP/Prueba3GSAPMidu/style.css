@@ -1,0 +1,65 @@
+/* *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    color: #8A0707;
+    background-color: black;
+    height: 5000px;
+    width: 100vw;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.main__section{
+    position: fixed;
+    left: 35%;
+    top: 45%;
+}
+
+.title{
+    font-size: 10rem;
+    width: 100%;
+    top: 50%;
+}
+
+.word_special{
+    font-size: 6rem;
+    margin: 0.3rem;
+} */
+
+
+body {
+    color: #8A0707;
+    background-color: black;
+    /* No hace falta poner height 5000px aquí, GSAP lo creará con el pin */
+    width: 100vw;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.main__section {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Ocupa toda la ventana */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    position: absolute; /* Para que flote sobre el canvas */
+    z-index: 10;
+    font-size: 10rem;
+    width: 100%;
+    text-align: center;
+    pointer-events: none; /* Para que no moleste al hacer scroll */
+}
+
+#hero {
+    /* El canvas debe tener un tamaño visible */
+    max-width: 100vw;
+    max-height: 100vh;
+}
