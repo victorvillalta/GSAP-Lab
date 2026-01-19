@@ -70,7 +70,7 @@
         img.onload = () => {
             loadedCount++;
             if (loadedCount === 1) {
-                // Dibujar la primera imagen en cuanto cargue
+                // draw the first image for a charge
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
             }
         };
@@ -79,7 +79,7 @@
 
     const momo = { frame: 1 };
 
-    //Main Animation (photos & PIN) 
+    //Main Animation - photos & PIN 
     gsap.to(momo, {
         frame: TOTAL_FRAMES,
         snap: "frame",
@@ -87,9 +87,9 @@
         scrollTrigger: {
             trigger: ".main__section",
             start: "top top",
-            end: "+=4000", // La duración del scroll
+            end: "+=4000", // duration of the scroll
             scrub: 0.5,
-            pin: true,    // ESTO mantiene el título y el canvas quietos
+            pin: true,    //  stay away the title and canvas
             // markers: true // in the process its very useful 
         },
         onUpdate: () => {
@@ -109,12 +109,31 @@
         scale: 2,
         autoAlpha: 0,
         scrollTrigger: {
-            trigger: ".main__section", // Usamos el mismo trigger
-            start: "top top",          // Empieza a la vez
-            end: "+=3000",              // Pero termina rápido (a los 800px)
+            trigger: ".main__section", 
+            start: "top top",          
+            end: "+=3000",              
             scrub: 0.3
         }
     });
+    
+// try with eyes... mask and others.. but effect not very good ... 
+
+const eyesTL = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".main__section",
+        start: "top top", 
+        end: "+=6000",
+        scrub: true
+    }
+});
+
+eyesTL.to(".eye-glow", {
+    opacity: 1, 
+    filter: "drop-shadow(0 10px 40px #41d13f) brightness(1.8)",
+    stagger: 0.5, 
+    duration: 2
+}, 0.5);
+
 });
 </script>
 
@@ -125,6 +144,13 @@
     
     <section class="main__section">
         <div class="title">DANDADAN</div>
+
+
+            <div class="eyes-container">
+                <img src="./img/scrolling/eye-left.png" class="eye-glow left" id="eyeLeft">
+                <img src="./img/scrolling/eye-right.png" class="eye-glow right" id="eyeRight">
+            </div>
+            
         <canvas id="hero"></canvas>
     </section>
     

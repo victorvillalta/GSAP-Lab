@@ -40,13 +40,13 @@ body {
 }
 
 .main__section {
-    position: relative;
+  position: relative; /* Contenedor de referencia */
     width: 100%;
-    height: 100vh; /* Ocupa toda la ventana */
+    height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .title {
@@ -62,4 +62,46 @@ body {
     /* El canvas debe tener un tamaño visible */
     max-width: 100vw;
     max-height: 100vh;
+    z-index: 1;
+    position: relative;
+}
+
+.eyes-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   
+    width: 100%; 
+    height: 100%;
+    max-width: 1366px; 
+    max-height: 768px;
+    z-index: 99; 
+    pointer-events: none;
+}
+.eye-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; 
+}
+
+.shine-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(to right, 
+                rgba(255, 255, 255, 0) 0%, /* Transparente al inicio */
+                rgba(255, 255, 255, 0.8) 50%, /* Blanco brillante en el centro */
+                rgba(255, 255, 255, 0) 100%); /* Transparente al final */
+    transform: translateX(-100%); /* Empieza completamente a la izquierda, fuera de la vista */
+    opacity: 0; /* Invisible al inicio */
+    z-index: 10; /* Siempre por encima de los ojos */
+    pointer-events: none;
+
 }
