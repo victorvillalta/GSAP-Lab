@@ -5,8 +5,8 @@
 }
 
 body{
-    width: 1200px;
-    height: 1200px;
+    width: 100vw;
+    height: 100vh;
     background-color: rgb(15, 15, 15);
 }
 
@@ -16,18 +16,49 @@ body{
     align-items: center;
 }
 
-.grid__gallery-characters{
+.title {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Espacio entre letras */
+    padding: 50px 0;
+}
+
+.title img {
+    height: 100px; /* O el tamaño que prefieras */
+    width: auto;
+}
+
+.grid__gallery-characters {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    /* Autofill is the form more easy for a resize fast, its amazing */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 15px;
+    padding: 20px;
+}
     
+.gallery__item {
+    width: 100%;
+    aspect-ratio: 1/ 2; 
+    overflow: hidden;
+    background: #1a1a1a;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 242, 255, 0.1);
+}
 
-    img{
-        aspect-ratio: 1/1;
-        object-fit: cover;
-        width: 100%;
-    
-    }
+.gallery__item:hover {
+    border: 1px solid rgba(0, 242, 255, 0.8);
+}
 
+.gallery__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cut the image for fill all space and no resize the original img */
+    object-position: center top;  /* Is very usefull , the align the line of cut center top for see the faces good. */
+    display: block;
+    transition: transform 1.5s ease;
+}
 
+.gallery__item:hover .gallery__img {
+    transform: scale(1.1); /* Efecto zoom al pasar el ratón */
 }
 

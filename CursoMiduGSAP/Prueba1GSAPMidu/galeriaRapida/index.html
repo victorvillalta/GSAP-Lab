@@ -8,13 +8,20 @@
 
     <!-- CDN installer but you can also install to be NPM or YARN-->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/SplitText.min.js"></script>
 
 </head>
 <body>
+
 <section class="header">
     <div class="title">
-        <img src="img/assets/Arcane_Title_Text.png" alt="Arcane title">
+        <img src="img/assets/A.png" alt="Arcane title" class="title-A">
+        <img src="img/assets/R.png" alt="Arcane title" class="title-R">
+        <img src="img/assets/C.png" alt="Arcane title" class="title-C">
+        <img src="img/assets/A.png" alt="Arcane title" class="title-A">
+        <img src="img/assets/N.png" alt="Arcane title" class="title-N">
+        <img src="img/assets/E.png" alt="Arcane title" class="title-E">
     </div>
 </section>
 
@@ -22,65 +29,89 @@
 <section class="gallery__category">
 
     <div class="grid__gallery-characters">
-        <img src="img/jinxGal_01.jpg" alt="Jinx">
-        <img src="img/isha-gal-02.jpg" alt="Isha">
-        <img src="img/VII-NormalVersion-Gal01.jpg" alt="VI">
-        <img src="img/VanderWarwick-gal-00.jpg" alt="Vander">
-        <img src="img/Warwick-gal-01.jpg" alt="Warwich">
-        <img src="img/Singed-gal-01.jpg" alt="Singed">
-        <img src="img/Ekko-Gal-01.jpg" alt="Ekko">   
-        <img src="img/Caithling-01.jpg" alt="Caitlyn Kiramman">
-        <img src="img/maddie-gal-01.jpg" alt="Maddie">
-        <img src="img/steb-gal-01.jpg" alt="Steb">
-        <img src="img/Loris-gal-01.jpg" alt="Loris">
-        <img src="img/cassandraKiramman-gal-01.jpg" alt="Cassandra Kiramman">
-        <img src="img/mel-04.jpg" alt="Mel">
-        <img src="img/Ambessa-04.jpg" alt="Ambessa Medarda">
-        <img src="img/rictus-gal-01.jpg" alt="Rictus">
-        <img src="img/Silco-gal-01.jpg" alt="Silco">
-        <img src="img/sevika_01.jpg" alt="Sevika">
-        <img src="img/JayceTalis-gal-04.jpg" alt="Jayce">
-        <img src="img/heimerdinger-gal-01.jpg" alt="Heimerdinger">
-        <img src="img/viktor-gal-01.jpg" alt="Viktor">
-        <img src="img/huck-gal-01.jpg" alt="Huck">
-        <img src="img/salo-gal-01.jpg" alt="Salo">
-        <img src="img/shoola-gal-02.jpg" alt="Shoola">
-        <img src="img/smeech-gal-01.jpg" alt="Smeech">
-        <img src="img/thomasHoskel-gal-01.jpg" alt="Thomas Hoskel">
-        <img src="img/finn-gal-01.jpg" alt="Finn">
-        <img src="img/lebanc-gal-03.webp" alt="Leblanc">
-        <img src="img/mylo-gal-01.jpg" alt="Mylo">
-        <img src="img/grayson-gal-01.jpg" alt="Grayson">
-        
-        
-        
-
-
-
-
-
-
-
+        <div class="gallery__item"><img src="img/jinxGal_01.jpg" alt="Jinx" class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/isha-gal-02.jpg" alt="Isha" class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/VII-NormalVersion-Gal01.jpg" alt="VI"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/VanderWarwick-gal-00.jpg" alt="Vander"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/Warwick-gal-01.jpg" alt="Warwich"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/Singed-gal-01.jpg" alt="Singed"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/Ekko-Gal-01.jpg" alt="Ekko"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/Caithling-01.jpg" alt="Caitlyn Kiramman"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/maddie-gal-01.jpg" alt="Maddie"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/steb-gal-01.jpg" alt="Steb"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/Loris-gal-01.jpg" alt="Loris"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/cassandraKiramman-gal-01.jpg" alt="Cassandra Kiramman"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/mel-04.jpg" alt="Mel"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/Ambessa-04.jpg" alt="Ambessa Medarda"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/rictus-gal-01.jpg" alt="Rictus"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/Silco-gal-01.jpg" alt="Silco"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/sevika_01.jpg" alt="Sevika"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/JayceTalis-gal-04.jpg" alt="Jayce"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/heimerdinger-gal-01.jpg" alt="Heimerdinger"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/viktor-gal-01.jpg" alt="Viktor"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/huck-gal-01.jpg" alt="Huck"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/salo-gal-01.jpg" alt="Salo"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/shoola-gal-02.jpg" alt="Shoola"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/smeech-gal-01.jpg" alt="Smeech"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/thomasHoskel-gal-01.jpg" alt="Thomas Hoskel"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/finn-gal-01.jpg" alt="Finn"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/lebanc-gal-03.webp" alt="Leblanc"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/mylo-gal-01.jpg" alt="Mylo"  class="gallery__img"></div>
+        <div class="gallery__item"><img src="img/grayson-gal-01.jpg" alt="Grayson"  class="gallery__img"></div>
 
     </div>
-
 </section>
 
 
     <script>
 
-        gsap.to('.grid__gallery-characters img', {
-            duration: 2,
-            scale: .97,
-            opacity: 0,
-            stagger: {
-                each:0.2,
-                repeat: -1,
-                yoyo: true,
-                grid: 'auto',
-                from: 'end' // have more types , 'center', 'edges', 
-            }
-        })
+// Animate introduction  "Title"
+    gsap.from(".title img", {
+        duration: 1.2,
+        y: -100,            
+        opacity: 0,        
+        filter: "blur(10px)", 
+        stagger: 0.15,       // delay if letter between letter
+        ease: "expo.out",    // use for a fluid movement or fluid animation
+    });
+
+    // Animation "GalleryCharaacters"
+    gsap.from(".gallery__item", {
+        scrollTrigger: {
+            trigger: ".grid__gallery-characters",
+            start: "top 80%", // Se dispara cuando la rejilla está al 80% de la pantalla
+            toggleActions: "play none none none"
+        },
+        duration: 1,
+        scale: 0.5,
+        opacity: 0,
+        filter: "blur(5px)",
+        y: 50,
+        stagger: {
+            each: 0.2,
+            grid: "auto",
+            from: "start"
+        },
+        ease: "expo.out" // Un final suave y elegante
+    });
+
+        // gsap.to('.grid__gallery-characters img', {
+        //     duration: 2,
+           
+        //     opacity: 0,
+        //     stagger: {
+        //         amount: 1.5,
+        //         scale: 0.5,
+        //         opacity: 0,
+        //         // each:0.2,
+        //         y: 5,
+        //         repeat: -1,
+        //         yoyo: true,
+        //         grid: 'auto',
+        //         from: 'start' // have more types , 'center', 'edges', 'end'
+        //     },
+        //     ease: "expo.out" // Un final suave y elegante
+        // })
 
 
     </script>
