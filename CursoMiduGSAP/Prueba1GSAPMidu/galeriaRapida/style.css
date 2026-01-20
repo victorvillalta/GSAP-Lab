@@ -19,14 +19,20 @@ body{
 .title {
     display: flex;
     justify-content: center;
-    gap: 10px; /* Espacio entre letras */
+    gap: 10px; 
     padding: 50px 0;
 }
 
-.title img {
-    height: 100px; /* O el tamaño que prefieras */
+.title_img {
+    height: 100px;
     width: auto;
+    filter: drop-shadow(0 2px 5px rgba(0, 242, 255, 0.8)) blur(1px);
+    transform: scale(1.1) translateY(-5px); /* Se agranda y sube un poco */
+    opacity: 0.7;
 }
+
+
+
 
 .grid__gallery-characters {
     display: grid;
@@ -50,8 +56,9 @@ body{
 }
 
 .gallery__img {
+    position: relative;
     width: 100%;
-    height: 100%;
+    aspect-ratio: 1 / 2;
     object-fit: cover; /* Cut the image for fill all space and no resize the original img */
     object-position: center top;  /* Is very usefull , the align the line of cut center top for see the faces good. */
     display: block;
@@ -59,6 +66,43 @@ body{
 }
 
 .gallery__item:hover .gallery__img {
-    transform: scale(1.1); /* Efecto zoom al pasar el ratón */
+    transform: scale(1.1); 
 }
 
+
+/* .addicional__text-img{
+    position: absolute;
+    left: 30%;
+    top: 85%;
+    color: rgb(249, 209, 148);
+    font-size: 4rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    pointer-events: none;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+} */
+
+.addicional__text-img {
+    position: absolute;
+    bottom: 0px;   
+    width: 100%;     /* center width the box */
+    text-align: center;
+    color: #eedb9f;
+    font-size: 2.3rem; /* Bajamos un poco el tamaño para que quepa bien */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    z-index: 10;     
+    pointer-events: none; /* Para que el ratón "atraviese" el texto y detecte la imagen */
+    padding: 10px;
+    
+    /* start status: hide */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.gallery__item:hover .addicional__text-img {
+    opacity: 1;
+    transform: translateY(0);
+}
