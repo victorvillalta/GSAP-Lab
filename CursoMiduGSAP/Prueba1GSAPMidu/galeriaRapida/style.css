@@ -23,11 +23,12 @@ body{
     padding: 50px 0;
 }
 
-.title_img {
+.title img {
     height: 100px;
     width: auto;
-    filter: drop-shadow(0 2px 5px rgba(0, 242, 255, 0.8)) blur(1px);
-    transform: scale(1.1) translateY(-5px); /* Se agranda y sube un poco */
+    /* filter: drop-shadow(0 2px 5px rgba(0, 242, 255, 0.8)) blur(1px);
+    transform: scale(1.1) translateY(-5px); aqui hubo un problema con las especificaciones y el criterio entre GSAP y las hojas de estilo, lo dejo para recordarlo porque 
+    se interconecto el JS con ambas y no sabia a cual darle el criterio de especificidad dando una confusion que llevaba a que arcane se quedara activado la luz desde su entrada en el display */
     opacity: 0.7;
 }
 
@@ -52,7 +53,7 @@ body{
 }
 
 .gallery__item:hover {
-    border: 1px solid rgba(0, 242, 255, 0.8);
+    border: 1px solid #eedb9fc9;
 }
 
 .gallery__img {
@@ -90,10 +91,10 @@ body{
     width: 100%;     /* center width the box */
     text-align: center;
     color: #eedb9f;
-    font-size: 2.3rem; /* Bajamos un poco el tamaño para que quepa bien */
+    font-size: 2.3rem; 
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     z-index: 10;     
-    pointer-events: none; /* Para que el ratón "atraviese" el texto y detecte la imagen */
+    pointer-events: none; /* the mouse not take the text and detect the img.*/
     padding: 10px;
     
     /* start status: hide */
