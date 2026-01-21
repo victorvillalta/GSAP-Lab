@@ -37,7 +37,7 @@
     });
 
 
-    // Animation "GalleryCharaacters"
+    // Animation "GalleryCharacters"
     const items = gsap.utils.toArray(".gallery__item");
 
     items.forEach((item) => {
@@ -73,3 +73,59 @@
         //     ease: "expo.out" // Un final suave y elegante
         // })
 
+// 1. Referencias
+const gallery = document.querySelector('.gallery__category'); 
+const detailView = document.getElementById('character-detail');
+const backBtn = document.querySelector('.btn-back');
+
+// 2. Función ÚNICA para abrir
+function openDetail() {
+    // Bloqueamos scroll del fondo
+    // document.body.style.overflow = 'hidden'; no es necesario porque el modal tiene ya overflow auto
+
+    const tl = gsap.timeline();
+
+    // Reset de seguridad: nos aseguramos que el modal esté arriba
+    gsap.set(detailView, { 
+        display: "block", 
+        opacity: 0,
+        top: 0 
+    });
+
+    tl.to(gallery, { 
+        opacity: 0, 
+        scale: 0.97, 
+        duration: 0.3,
+        ease: "power2.inOut",
+        // Al terminar, quitamos la galería del flujo para que no interfiera
+        onComplete: () => { gallery.style.display = 'none'; }
+    })
+    .to(detailView, { 
+        opacity: 1, 
+        duration: 0.2 
+    })
+    .from(".block-char", { 
+        y: 100, 
+        opacity: 0, 
+        stagger: 0.2, 
+        duration: 0.6, 
+        ease: "out" 
+    });
+}
+
+// 3. Función para cerrar
+backBtn.addEventListener('click', () => {
+    // Devolvemos la galería antes de animar
+    gallery.style.display = 'block';
+    document.body.style.overflow = 'auto'; // Restauramos el scroll del fondo
+
+    gsap.timeline()
+        .to(detailView, { opacity: 0, duration: 0.3 })
+        .set(detailView, { display: "none" })
+        .to(gallery, { opacity: 1, scale: 1, duration: 0.5 });
+});
+
+// 4. Asignar evento a CADA item de la galería (no a la sección entera)
+document.querySelectorAll('.gallery__item').forEach(item => {
+    item.addEventListener('click', openDetail);
+});
