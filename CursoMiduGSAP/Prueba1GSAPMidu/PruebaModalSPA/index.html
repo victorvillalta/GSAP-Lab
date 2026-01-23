@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSAP Modal Test</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+   
+    <script src="script.js" defer></script>
+
+
+</head>
+<body>
+    
+  <main class="gallery">
+    <div class="card" data-char="jinx">
+        <img src="img/jinx-gallery01.jpg" alt="Jinx">
+        <div class="item-text">Jinx</div>
+    </div>
+    <div class="card" data-char="vi">
+        <img src="img/VI-gallery01.jpg" alt="Vi">
+        <div class="item-text">Vi</div>
+    </div>
+    <div class="card" data-char="mel">
+        <img src="img/mel-gallery01.jpg" alt="Mel">
+        <div class="item-text">Mel</div>
+    </div>
+</main>
+    
+
+    <div id="modal-container" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-photo">
+                <img id="dynamic-img" src="img/jinx-modal01.jpg" alt="Jinx">
+            </div>
+            <div class="modal-info">
+                <h2 id="dynamic-title">Jinx</h2>
+                <p id="dynamic-text">Jinx es una tia rechulona quie mola mucho pero esta desequilibrada.</p>
+                <button class="close-btn">CERRAR</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+</html>
+
