@@ -12,6 +12,7 @@ body { background: #111; color: white; font-family: sans-serif; }
 }
 
 .card{
+    display: block;
     position: relative;
     background: #333;
     cursor: pointer;
@@ -21,7 +22,14 @@ body { background: #111; color: white; font-family: sans-serif; }
     width: 100%;       /* width of grid */
     aspect-ratio: 2/3; /* anchor height asambles posters of film */
     overflow: hidden;  /* important for the img not exit to assambles.  */
-    
+    box-shadow: 0.3s ease;
+    --accent-color: #27a4e3;  
+}
+
+.card:hover {
+    /* This style it here but our JS, take the --accent-color for any card. */
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 0 15px var(--accent-color);
 }
 
 .card img {
@@ -30,7 +38,7 @@ body { background: #111; color: white; font-family: sans-serif; }
     object-fit: cover; /* not deform */
     object-position: center top;
     display: block;
-
+      
     opacity: 0;
     transform: translateY(30px);
 
@@ -52,30 +60,57 @@ body { background: #111; color: white; font-family: sans-serif; }
     padding: 15px;
     background: linear-gradient(transparent, rgba(0,0,0,0.8));
     text-align: center;
+    font-size: 3rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 /* modal : siempre debe ser FIXED para no colisionar con el scroll */
 .modal-overlay {
+    --accent-color: #27a4e3;
+
+    display: none;  /* initial state: Invisible for the user */
     position: fixed;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+
     top: 0; left: 0;
     width: 100%; height: 100vh;
     background: rgba(0,0,0,0.9);
-    z-index: 10;
     
-    /* initial state: Invisible for the user. */
-    display: none; 
-    justify-content: center;
-    align-items: center;
+    /* change the content of the click in the JS , with the data of JSON */
+    
 }
 
 .modal-content {
     display: flex; /* split 35/65 */
     width: 80%; height: 60vh;
     background: #222; border: 1px solid #555;
+    border: 1px solid var(--accent-color); 
+    box-shadow: 0 0 30px rgba(0,0,0,0.5), 0 0 10px var(--accent-color);
 }
 
 .modal-photo { flex: 0 0 35%; background: #444; }
 .modal-photo img { width: 100%; height: 100%; object-fit: cover; }
-
 .modal-info { flex: 0 0 65%; padding: 40px; }
-.close-btn { margin-top: 20px; cursor: pointer; padding: 10px 20px; }
+.modal-info h2{ color: var(--accent-color); font-size: 3rem; margin-bottom: 10px;}
+
+.close-btn {
+    cursor: pointer;
+    color: var(--accent-color);
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 2px solid var(--accent-color);
+    /* transition: all 0.3s ease; */
+}
+
+.close-btn:hover {
+    background: var(--accent-color);
+    color: #222; 
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+.subtitle-class{
+margin-bottom: 0.5rem;
+}
