@@ -20,10 +20,9 @@ fetch('./data.json')
     })
     .catch(error => console.error("Error loading JSON:", error));
 
-
 function initApp() {
-    // 1. Animation to entrance of card images.
-    gsap.to(".card img", {
+    // ... Animación de entrada GSAP (mantenla igual)
+        gsap.to(".card img", {
         autoAlpha: 1,      // use autoAlpha instead of opacirty for the best performance
         y: 0,              // reset translateY(30px) to CSS.
         duration: 0.8,
@@ -31,22 +30,69 @@ function initApp() {
         ease: "power2.out"
     });
 
-    // 2. Logic of clicks for activate to modal to be card.
     document.querySelectorAll('.card').forEach(card => {
-            const id = card.getAttribute('data-char');
-            const info = characters[id];
+        const id = card.getAttribute('data-char');
+        const info = characters[id];
 
-            if (info) {
-                card.style.setProperty('--accent-color', info.color);
-                card.addEventListener('click', () => {
-                    currentIdx = charKeys.indexOf(id);
-                    updateModalContent(info);
-                    document.body.classList.add('modal-open'); // Add class to body to block scroll
-                    tl.play();
+        if (info) {
+            card.style.setProperty('--accent-color', info.color);
+            
+            // CLICK to be modal
+            card.addEventListener('click', () => {
+                currentIdx = charKeys.indexOf(id);
+                updateModalContent(info);
+                document.body.classList.add('modal-open');
+                tl.play();
+            });
+
+            // persppective and Tilt (but need more objets for paralax)
+            card.addEventListener('mousemove', (e) => {
+                const { clientX, clientY } = e;
+                const rect = card.getBoundingClientRect();
+                
+                const x = (clientX - rect.left) / rect.width - 0.5;
+                const y = (clientY - rect.top) / rect.height - 0.5;
+
+                gsap.to(card, {
+                    rotationY: x * 20, // Aumentamos a 20 para que lo notes más
+                    rotationX: -y * 20,
+                    transformPerspective: 1500,
+                    ease: "power2.out",
+                    duration: 0.4
                 });
-            }
-        });
+
+                gsap.to(card.querySelector('img'), {
+                    x: -x * 25, // Movimiento opuesto de la imagen
+                    y: -y * 25,
+                    scale: 1.15, // Zoom para evitar bordes vacíos
+                    duration: 0.4
+                });
+            });
+
+            // Parallax to be scroll: The cards move at diferent speed when scroll the page, (future: Lazzy Load Images and put more cards. "update the performance")
+            window.addEventListener('scroll', () => {
+                const scrolled = window.scrollY;
+                
+                
+                gsap.to(".card:nth-child(1)", { y: scrolled * 0.05, ease: "none" });
+                gsap.to(".card:nth-child(2)", { y: scrolled * 0.1, ease: "none" });
+                gsap.to(".card:nth-child(3)", { y: scrolled * 0.15, ease: "none" });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    rotationX: 0, rotationY: 0,
+                    ease: "power2.out", duration: 0.6
+                });
+                gsap.to(card.querySelector('img'), {
+                    x: 0, y: 0, scale: 1,
+                    duration: 0.6
+                });
+            }); 
+        }
+    });
 }
+
 // 2. Logic the update of injection , its a cure of the Stacking Context. 
         function updateModalContent(info) {
                 document.querySelector('#dynamic-title').innerText = info.title;
@@ -60,8 +106,10 @@ function initApp() {
         }
 
 
-// 3. Navegation (Circular Bonus)
+// 3. Circular navigation Logic
 function navigateModal(step){
+    if (charKeys.length === 0) return; // guard clause
+
     currentIdx += step;
     if (currentIdx < 0) currentIdx = charKeys.length - 1;
     if (currentIdx >= charKeys.length) currentIdx = 0;
@@ -86,21 +134,37 @@ function navigateModal(step){
 document.querySelector('.modal__btn--prev').addEventListener('click', () => navigateModal(-1));
 document.querySelector('.modal__btn--next').addEventListener('click', () => navigateModal(1));
 
-// 4. SCROLL POR HOVER (Marquesina)
+// 4. SCROLL POR HOVER LOGIC
 let scrollInterval;
 function startScroll(speed) {
-    scrollInterval = setInterval(() => { textContainer.scrollTop += speed; }, 10);
+    scrollInterval = setInterval(() => { 
+        textContainer.scrollTop += speed; 
+    }, 10);
 }
 
-// Aquí asignamos a tus botones de navegación o a botones extra
+// 4.1 Events buttons
 document.querySelector('.modal__btn--up').addEventListener('mouseenter', () => startScroll(-2));
 document.querySelector('.modal__btn--up').addEventListener('mouseleave', () => clearInterval(scrollInterval));
 document.querySelector('.modal__btn--down').addEventListener('mouseenter', () => startScroll(2));
 document.querySelector('.modal__btn--down').addEventListener('mouseleave', () => clearInterval(scrollInterval));
 
-// 3. Elements in global range (REFACTORING in Scope?)
+//5. LOGIC: button of close, click out for exit and cleaner the props 
+document.querySelector('.close-btn')?.addEventListener('click', () => {
+        tl.reverse().then(() => {
+            document.body.classList.remove('modal-open');
+            gsap.set(modal, { clearProps: "all" });
+        });
+    });
 
 
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        document.querySelector('.close-btn').click(); 
+    }
+});
+
+
+// 6. Animation GSAP Entry cards
 gsap.to(".card img", {
     opacity: 1,
     y: 0,
@@ -111,7 +175,7 @@ gsap.to(".card img", {
     }
 });
 
-// 4. Animation modal object with inyect the 
+// 7. Animation modal object with inyect the 
 const tl = gsap.timeline({ paused: true });
 
 tl.set(modal, { display: 'flex' })
@@ -137,15 +201,3 @@ tl.set(modal, { display: 'flex' })
       duration: 0.4
   }, "-=0.2");
 
-  
-// 5. LOGIC: button of close, click out for exit and cleaner the props 
-    
-modal.addEventListener('click', (e) => {
-    // Si el target es el overlay (el fondo oscuro) y no el contenido blanco
-    if (e.target === modal) {
-        tl.reverse().then(() => {
-            document.body.classList.remove('modal-open');
-            gsap.set(modal, { clearProps: "all" }); // Esto limpia los estilos de GSAP para que no choquen con el CSS
-        });
-    }
-});
