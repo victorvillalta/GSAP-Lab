@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thor: The God of Thunder</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+        body {
+            font-family: 'Bangers', system-ui;
+            background-color: #0b0e14;
+            color: white;
+            display: flex;
+            justify-content: center;
+            padding: 50px;
+        }
+
+        /* Usamos Grid como pediste */
+        .article-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 { font-size: 4rem; margin: 1rem; }
+        h3 { color: #84dcee; text-transform: uppercase; }
+        p { line-height: 1.5; font-family: sans-serif; }
+
+
+        /* FOIT and FOUC error, use the Disabled cache and Fast 4G for look the error  */
+        .thor-image {
+            width: 100%;
+            /* En lugar de height: 300px, usamos una proporción */
+            aspect-ratio: 16 / 9; 
+            background-image: url('https://i.pinimg.com/736x/39/4f/d4/394fd4e65e6458c466f5a2bccda336d2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-color: #222; /* Un placeholder visual mientras carga */
+}
+            
+    </style>
+</head>
+<body>
+
+    <article class="article-grid">
+        <div class="thor-image"></div>
+        <h1>THOR</h1>
+        <h3>The Son of Odin</h3>
+        <p>
+            Thor Odinson is the God of Thunder, a former king of Asgard and a founding member of the Avengers. 
+            With his hammer Mjölnir, he wields the power of storms and lightning.
+        </p>
+    </article>
+
+</body>
+</html>
