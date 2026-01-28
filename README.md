@@ -11,5 +11,13 @@ This branch focuses on the **User Experience** during the loading state. We impl
 ## Current Bottleneck
 The **FOUT** (font flickering) remains because the font is still fetched from an external CDN.
 
-## Next Goal
-**Phase 4: Root Solution.** Self-hosting assets.
+## # Phase 4: Root Solution (COMPLETED) 
+
+### Self-hosting & Optimization
+- **Font Format**: Migrated from `.ttf` (91KB) to optimized `.woff2` (28KB).
+- **Zero FOUC/FOIT**: Implemented `font-display: swap` and `<link rel="preload">`.
+- **Final Performance**: Reduced 3G load time from 7.5s to 6.2s.
+
+## ⚡ Portfolio Featured Projects
+- **3D Paralax Gallery**: Experimentos con tilt interactions y GSAP.
+- **Modal Logic**: Estructura de modales dinámicos con stagger entrance.
