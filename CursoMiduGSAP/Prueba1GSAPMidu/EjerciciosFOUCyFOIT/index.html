@@ -5,54 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thor: The God of Thunder</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <!-- useful for parch the error and optimization to charge the loading font to server google , but the change is the best solution not use. -->
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> --> 
+
+    <link rel="preload" href="./assets/fonts/bangers-regular-webfont.woff2" as="font" type="font/woff2" crossorigin> <!-- PRELOAD the font its a gold -->
+    
+    <!-- not use.. parch with @font-face -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet"> -->  
 
 
-    <style>
-       
+    <style>  
 
-        body {
-            font-family: 'Bangers', system-ui;
-            background-color: #0b0e14;
-            color: white;
-            display: flex;
-            justify-content: center;
-            padding: 50px;
-        }
-
-        /* Usamos Grid como pediste */
-        .article-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            max-width: 600px;
-            text-align: center;
-        }
-
-        h1 { font-size: 4rem; margin: 1rem; }
-        h3 { color: #84dcee; text-transform: uppercase; }
-        p { line-height: 1.5; font-family: sans-serif; }
-
-
-        /* FOIT and FOUC error, use the Disabled cache and Fast 4G for look the error  */
-        .thor-image {
-            width: 100%;
-            aspect-ratio: 2 / 3;
-            /* Skeleton Screen: gradient for loading */
-            background: linear-gradient(110deg, #1a1a1a 8%, #252525 18%, #1a1a1a 33%);
-            background-size: 200% 100%;
-            animation: shine 1.5s linear infinite;
-            border-radius: 8px;
+    @font-face {
+    font-family: 'Bangers';  /* font download in folder */
+    src: url('./assets/fonts/bangers-regular-webfont.woff2') format('woff2'); /* root to assets with the fonts (the woff2 font its a 70% less weight than the font.tff)*/
+    font-display: swap;  /* fix for foit: the cure */
+    unicode-range: U+0000-00FF; /* optional: use for optimization performance (if not use the character to rang def not download) , segmentation or fonts (latine, Cyrillic)  and estilization specific (char personal) */
 }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    body {
+        font-family: 'Bangers', system-ui;
+        background-color: #0b0e14;
+        color: white;
+        display: flex;
+        justify-content: center;
+        padding: 50px;
+    }
 
-        @keyframes shine {
-            to { background-position-x: -200%; }
-        }
+    /* Usamos Grid como pediste */
+    .article-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        max-width: 600px;
+        text-align: center;
+    }
+
+    h1 { font-size: 4rem; margin: 1rem; }
+    h3 { color: #84dcee; text-transform: uppercase; }
+    p { line-height: 1.5; font-family: sans-serif; }
+
+
+    /* FOIT and FOUC error, use the Disabled cache and Fast 4G for look the error  */
+    .thor-image {
+        width: 100%;
+        aspect-ratio: 2 / 3;
+        /* Skeleton Screen: gradient for loading */
+        background: linear-gradient(110deg, #1a1a1a 8%, #252525 18%, #1a1a1a 33%);
+        background-size: 200% 100%;
+        animation: shine 1.5s linear infinite;
+        border-radius: 8px;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes shine {
+        to { background-position-x: -200%; }
+    }
             
     </style>
 </head>
