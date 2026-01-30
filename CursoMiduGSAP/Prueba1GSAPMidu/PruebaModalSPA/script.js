@@ -203,7 +203,7 @@ modalTl.set(modal, { display: 'flex' })
 
 
 
-// 8. Animation hero ARCANE
+// 8. ANIMATION ARCANE LOGO HERO TITLE - FORRM A / B / C
 
 //ALL CORRECT
 
@@ -236,7 +236,6 @@ gsap.from(logoArcane, {
 });
 */
 
-
 // -- FORM C --/* BEST PERFORMANCE AND CONTROL MANUAL OF THE STAGGER
 const letters = document.querySelectorAll('.hero__title .letter');
 const heroContainer = document.querySelector('.hero__title');
@@ -265,4 +264,84 @@ letters.forEach((letter, index) => {
         }, "-=0.3"); // the trigger of letter touch the floor , start 0.3 aprox
 });
 
+
+// 9. CUSTOM CURSOR WITH SPARKS HEXTECH ANIMATION ---------------- Investigate... more errors
+const outer = document.querySelector(".cursor-outer");
+const inner = document.querySelector(".cursor-inner");
+const sparkContainer = document.querySelector(".spark-container"); // Nuevo
+
+const posOuter = { x: 0, y: 0 };
+const posInner = { x: 0, y: 0 };
+const mouse = { x: 0, y: 0 };
+
+const speedOuter = 0.15;
+const speedInner = 0.8;
+
+window.addEventListener("mousemove", e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+});
+
+gsap.set(".cursor-wrapper", { autoAlpha: 1 });
+
+
+gsap.ticker.add(() => {
+    const dt = gsap.ticker.deltaRatio();
+
+    posOuter.x += (mouse.x - posOuter.x) * (1 - Math.pow(1 - speedOuter, dt));
+    posOuter.y += (mouse.y - posOuter.y) * (1 - Math.pow(1 - speedOuter, dt));
+    
+    posInner.x += (mouse.x - posInner.x) * (1 - Math.pow(1 - speedInner, dt));
+    posInner.y += (mouse.y - posInner.y) * (1 - Math.pow(1 - speedInner, dt));
+
+    gsap.set(outer, { x: posOuter.x - 15, y: posOuter.y - 15 });
+    gsap.set(inner, { x: posInner.x - 15, y: posInner.y - 15 });
+});
+
+// --- generator logic of "spark" HEXTECH -
+function createSpark() {
+    const spark = document.createElement("div");
+    spark.classList.add("spark");
+    document.querySelector(".spark-container").appendChild(spark);
+
+    const size = Math.random() * 5 + 2; 
+    const angle = Math.random() * Math.PI * 2; // construct angle in radians
+    const distance = Math.random() * 50 + 20;
+
+    // Usamos x e y directamente. Al estar en un contenedor que no se mueve,
+    // estas coordenadas coincidirán exactamente con la punta del ratón.
+    gsap.set(spark, { 
+        x: mouse.x, 
+        y: mouse.y,
+        width: size, 
+        height: size,
+        xPercent: -50, 
+        yPercent: -50
+    });
+
+    gsap.to(spark, {
+        duration: Math.random() * 0.6 + 0.4,
+        opacity: 0,
+        // Fx to spark for a random periocity if the user move cursor and remove the spark
+        x: `+=${Math.cos(angle) * distance}`, // coseno angle
+        y: `+=${Math.sin(angle) * distance}`,  // seno angle
+        scale: 2,
+        ease: "rough",
+        onComplete: () => spark.remove() // function with GPU , remove for clean memory and not crash, VERY IMPORTANT!
+    });
+}
+
+// Launched the spark to intervales randomly, not with all frames. 
+// control of "noise" and performance 
+gsap.to({}, { 
+    repeat: -1, 
+    duration: 0.1, // seed of check
+    onRepeat: () => {
+        if (Math.random() < 0.5) { // prob to spark 50%
+            createSpark();
+        }
+    }
+});
+
+// -------------------------------------------------------------
 

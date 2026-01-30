@@ -46,6 +46,55 @@ body.modal-open {
     overflow: hidden !important;
     height: 100vh;
 }
+
+/* --- CUSTOM CURSOR --- */
+
+.spark-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 99; /* Justo debajo del cursor */
+}
+
+.spark {
+    position: absolute; /* WHY: Absoluto respecto al spark-container (que es fixed) */
+    background: var(--fx-blue--100);
+    border-radius: 50%;
+    box-shadow: 0 0 20px #0cc2f9;
+}
+
+.cursor-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.cursor-outer {
+    width: 30px;
+    height: 30px;
+    background: rgba(42, 181, 236, 0.3);
+    border-radius: 50%;
+    filter: blur(8px); /* Mucho más difuminado */
+}
+
+.cursor-inner {
+    width: 6px;
+    height: 6px;
+    background: #00b7ff; /* Sólido y brillante */
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrado perfecto */
+    box-shadow: 0 0 10px #00b7ff;
+}
+
+
 /* --- HERO TITLE ARCANE --- */
 
 .hero__title {
