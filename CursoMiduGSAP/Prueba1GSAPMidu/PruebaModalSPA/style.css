@@ -27,7 +27,11 @@
 }
 
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { 
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box; 
+}
 
 body { 
     background: #111; 
@@ -48,7 +52,16 @@ body.modal-open {
     display: flex;
     justify-content: center;
     margin: 2rem 0;
-    
+
+    gap: 10px;
+    visibility: hidden;
+}
+
+.letter {  
+    width: clamp(40px, 8vw, 100px); /*(min movil) - (ideal size) - (max in desktop) */
+    height: auto;
+    filter: drop-shadow(0 0 0px rgba(0, 183, 255, 0));
+    transition: filter 0.3s ease;
 }
 
  

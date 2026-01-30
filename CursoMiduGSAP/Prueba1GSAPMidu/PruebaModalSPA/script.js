@@ -239,21 +239,30 @@ gsap.from(logoArcane, {
 
 // -- FORM C --/* BEST PERFORMANCE AND CONTROL MANUAL OF THE STAGGER
 const letters = document.querySelectorAll('.hero__title .letter');
+const heroContainer = document.querySelector('.hero__title');
+
+gsap.set(heroContainer, { visibility: "visible" });
 
 // Main animation 
 letters.forEach((letter, index) => {
-    const tl = gsap.timeline({ delay: index * 0.15 }); // manual stagger
+    const letterTl = gsap.timeline({ 
+        delay: index * 0.15 // manual stagger - control flow
+    }); 
 
-    tl.from(letter, {
-        y: -150,
-        opacity: 0,
-        duration: 1,
-        ease: "bounce.out" // more weight in the animation
-    })
-    .to(letter, {
-        filter: "drop-shadow(0 0 15px rgba(0, 183, 255, 0.8))", // El "Glow" azul hextech
-        duration: 0.3,
-        yoyo: true, // El brillo va y vuelve
-        repeat: 1
-    }, "-=0.2"); // Empieza un poco antes de que termine el rebote
+    letterTl 
+        .from(letter, {
+            y: -150,
+            opacity: 0,
+            duration: 1.2,
+            ease: "bounce.out" 
+        })
+        .to(letter, {
+            filter: "drop-shadow(0 0 15px rgba(0, 183, 255, 0.8))",
+            duration: 0.4,
+            yoyo: true,   
+            repeat: 1, 
+            ease: "power2.inOut"
+        }, "-=0.3"); // the trigger of letter touch the floor , start 0.3 aprox
 });
+
+
