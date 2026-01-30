@@ -42,7 +42,7 @@ function initApp() {
                 currentIdx = charKeys.indexOf(id);
                 updateModalContent(info);
                 document.body.classList.add('modal-open');
-                tl.play();
+                modalTl.play();
             });
 
             // persppective and Tilt (but need more objets for paralax)
@@ -150,7 +150,7 @@ document.querySelector('.modal__btn--down').addEventListener('mouseleave', () =>
 
 //5. LOGIC: button of close, click out for exit and cleaner the props 
 document.querySelector('.close-btn')?.addEventListener('click', () => {
-        tl.reverse().then(() => {
+        modalTl.reverse().then(() => {
             document.body.classList.remove('modal-open');
             gsap.set(modal, { clearProps: "all" });
         });
@@ -175,10 +175,10 @@ gsap.to(".card img", {
     }
 });
 
-// 7. Animation modal object with inyect the 
-const tl = gsap.timeline({ paused: true });
+// 7. Animation modal object - Paused control play
+const modalTl = gsap.timeline({ paused: true });
 
-tl.set(modal, { display: 'flex' })
+modalTl.set(modal, { display: 'flex' })
   .to(modal, { opacity: 1, duration: 0.4 })
   
   // animation: 35% photo of left
@@ -201,3 +201,59 @@ tl.set(modal, { display: 'flex' })
       duration: 0.4
   }, "-=0.2");
 
+
+
+// 8. Animation hero ARCANE
+
+//ALL CORRECT
+
+// -- FORM A --
+/*
+GOOD PERFORMANCE BUT NOT WORK STAGGER WITH LETTERS NOT HAVE ALL CONTROL
+
+const heroTl = gsap.timeline(); // Nombre único: heroTl
+
+heroTl.to(".hero__title", { opacity: 1, duration: 0.1 }) 
+  .from(".letter", {
+    y: -100,
+    opacity: 0,
+    stagger: 0.1,
+    duration: 1.2, 
+    ease: "bounce.out"
+  });
+*/
+
+// -- FORM B --
+/*SIMPLISTIC ANIMATION (STAGGER BUT NOT WORK PROPERLY)
+
+let logoArcane = document.querySelector(".hero__title ")
+
+gsap.from(logoArcane, {
+    y: -200,
+    opacity:0,
+    delay: 0.5,
+    stagger: 5,
+});
+*/
+
+
+// -- FORM C --/* BEST PERFORMANCE AND CONTROL MANUAL OF THE STAGGER
+const letters = document.querySelectorAll('.hero__title .letter');
+
+// Main animation 
+letters.forEach((letter, index) => {
+    const tl = gsap.timeline({ delay: index * 0.15 }); // manual stagger
+
+    tl.from(letter, {
+        y: -150,
+        opacity: 0,
+        duration: 1,
+        ease: "bounce.out" // more weight in the animation
+    })
+    .to(letter, {
+        filter: "drop-shadow(0 0 15px rgba(0, 183, 255, 0.8))", // El "Glow" azul hextech
+        duration: 0.3,
+        yoyo: true, // El brillo va y vuelve
+        repeat: 1
+    }, "-=0.2"); // Empieza un poco antes de que termine el rebote
+});

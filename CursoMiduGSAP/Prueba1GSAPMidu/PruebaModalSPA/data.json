@@ -55,21 +55,21 @@
       "caos sin pararse a pensar en las consecuencias. Con un arsenal de juguetes letales, desata las explosiones más brillantes",
       " y los estallidos más ruidosos para dejar un rastro de pánico y confusión a su paso."
     ],
-      "img": "img/jinx-modal01.jpg"
+      "img": "img/assets/details-character/img-jinx-modal/jinx-modal01.jpg"
     },
     "vi": {
       "title": "VI",
       "subtitle": "The Piltover Enforcer",
       "color": "#C23084",
       "desc": "Antigua criminal de los barrios bajos de Zaun, Vi es una mujer impulsiva, imponente y temible que solo confía en sus instintos. Armada con un par de guanteletes hextech gigantes, es capaz de atravesar paredes y rostros por igual con la misma facilidad. ",
-      "img": "img/vi-modal01.jpg"
+      "img": "img/assets/details-character/img-vi-modal/vi-modal01.jpg"
     },
     "mel": {
       "title": "MEL",
         "subtitle": "La consejera Medarda",
       "color": "#F2DFA5",
       "desc": "aristócrata noxiana sofisticada, inteligente y ambiciosa, destacada por su habilidad política y estratega. Heredera de la Casa Medarda, equilibra una apariencia elegante con una mente calculadora, siendo patrona de Jayce Talis y del avance Hextech. Su desarrollo muestra vulnerabilidad y una compleja relación con su madre, Ambessa",
-      "img": "img/mel-modal01.jpg"
+      "img": "img/assets/details-character/img-mel-modal/mel-modal01.jpg"
     }
   }
 }

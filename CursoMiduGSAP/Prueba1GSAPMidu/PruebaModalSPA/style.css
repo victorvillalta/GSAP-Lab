@@ -1,3 +1,32 @@
+:root{
+    --accent-color: #27a4e3; /* default color */
+
+
+    /* primary--color: ;
+    secondary--color: ; */
+
+    /* DECORATIVE COLORS */
+    --gold-100--100: #e7e09b;
+    --gold--200: #d2c976;
+    --gold--300: #c7bd5f;
+    --purple--100: 	#c4b2c7;
+    --purple--300: #69506f;
+
+    /* TEXT FONT */
+    --natural-text: #0d1b2a;
+    --inverse-text: #f2f2f2;
+    --accent-text:  #6a1b4d;  
+
+    /*FX EFFECT */
+    --fx-blue--100: #38c3ff;
+    --fx-blue--300: #33a4fc;
+    --fx-IntenseViolet--300: #6c00ff;
+    --fx-IntenseViolet--200: #9e56ff;
+    --fx-IntenseViolet--100: #bd8cff;
+
+}
+
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body { 
@@ -13,6 +42,17 @@ body.modal-open {
     overflow: hidden !important;
     height: 100vh;
 }
+/* --- HERO TITLE ARCANE --- */
+
+.hero__title {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    
+}
+
+ 
+/* --- GALLERY STYLE --- */
 
 .gallery {
     display: grid;
@@ -33,7 +73,7 @@ body.modal-open {
     
     /* take the assambles for grid */
     width: 100%;       /* width of grid */
-    aspect-ratio: 2/3; /* anchor height asambles posters of film */
+    aspect-ratio: 3/4; /* anchor height asambles posters of film */
     overflow: hidden;  /* important for the img not exit to assambles.  */
     backface-visibility: hidden;
     box-shadow: 0.3s ease var(--accent-color);
